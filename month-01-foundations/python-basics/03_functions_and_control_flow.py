@@ -254,3 +254,24 @@ students = [
 ]
 result = analyze_scores(students)
 print(result) 
+
+def example(a, *args, **kwargs):
+    """
+    Example function demonstrating *args and **kwargs.
+    """
+    print("a:", a)
+    print("args:", args)
+    print("kwargs:", kwargs)
+
+z = example(5, 10, 20, x=30, y=40)
+
+print(z)  # Output: a: 5 args: (10, 20) kwargs: {'x': 30, 'y': 40} None
+
+def example(*args, a):
+    """
+    Example function demonstrating *args with a required keyword argument.
+    """
+    print("a:", a)
+    print("args:", args)
+
+
