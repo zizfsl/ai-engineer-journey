@@ -5,7 +5,17 @@ class Student:
     def __init__(self, name, age, score):
         self.name = name
         self.age = age
-        self.score = score
+        self.__score = score
+
+    @property
+    def score(self):
+        return self.__score
+    
+    @score.setter
+    def score(self, value):
+            if not (0 <= value <= 100):
+                raise ValueError("Score must be between 0 and 100")
+            self.__score = value
 
     def __repr__(self):
         return f"Student('{self.name}', {self.age}, {self.score})"
