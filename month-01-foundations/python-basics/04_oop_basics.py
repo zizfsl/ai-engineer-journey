@@ -1,10 +1,22 @@
-class Student:
+class Person:
+
+    def __repr__(self):
+        return f"Person('{self.name}', Age: {self.age})"
+    
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def introduce(self):
+        print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+
+class Student(Person):
 
     #class attributes
     school_name = "ABC University"  
+
     def __init__(self, name, age, score):
-        self.name = name
-        self.age = age
+        super().__init__(name, age)
         self.__score = score
 
     @property
@@ -33,26 +45,38 @@ class Student:
     def update_score(self, new_score):
         self.score = new_score
 
+class Teacher(Person):
+    def __init__(self, name, age, subject):
+        super().__init__(name, age)
+        self.subject = subject
+        self.__salary = 50000   
+
+    def introduce(self):
+        print(f"Hello, my name is {self.name}, I am {self.age} years old and I teach {self.subject}.")
+
+person1 = Person("John", 30)
+Teacher1 = Teacher("Mr. Smith", 40, "Mathematics")
 student1 = Student("Alice", 20, 85)
-student1.update_score(95)
-student1.introduce()
-vl= student1.school_name
-print(vl)
-print(student1.is_passed())
 
+people = [person1, Teacher1, student1]
+for person in people:
+    person.introduce()
 
-student1.introduce()
-print(student1.is_passed())
+print(student1)
+print(Teacher1)
 
-stuent2 = Student("Bob", 22, 90)
-stuent2.introduce()
+# student1.introduce()
+# print(student1.is_passed())
 
-Student.school_name = "XYZ University"
-print(student1.school_name)
+# stuent2 = Student("Bob", 22, 90)
+# stuent2.introduce()
 
-student1.school_name = "PQR University"
-print(student1.school_name)
-print(stuent2.school_name)
+# Student.school_name = "XYZ University"
+# print(student1.school_name)
+
+# student1.school_name = "PQR University"
+# print(student1.school_name)
+# print(stuent2.school_name)
 
 
 #-------------------str-------------------
@@ -82,7 +106,6 @@ class Course:
 course = Course("Math")
 
 course.add_student(student1)
-course.add_student(stuent2)
 print(course.average_score())  # Output: 92.5
 print(course.top_student())  # Output: Student('Bob', 22, 90)   
 

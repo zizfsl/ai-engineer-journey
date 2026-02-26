@@ -383,3 +383,164 @@ This phase strengthened:
 The focus is shifting from “writing Python” to “engineering systems in Python.”
 
 ---
+Day 6 – Inheritance & Method Resolution Order (MRO)
+🎯 Objective
+
+Understand inheritance deeply, including method overriding, method resolution order, and the conceptual difference between inheritance and composition.
+
+🔑 Key Concepts
+
+Single inheritance in Python
+
+super() usage
+
+Method overriding
+
+Method Resolution Order (MRO)
+
+is-a vs has-a relationship
+
+Code reuse through inheritance
+
+🧠 What I Built
+
+Created a class hierarchy:
+
+class Person:
+    def introduce(self):
+        ...
+
+class Student(Person):
+    ...
+
+class Teacher(Person):
+    ...
+
+Also created a Course class that contains students but does not inherit from Person.
+
+📌 Important Observations
+
+If a method is not defined in the child class, Python automatically looks in the parent class.
+
+Student and Teacher inherit introduce() and __repr__() from Person unless overridden.
+
+Python follows MRO (Method Resolution Order) to find methods.
+
+Inheritance represents an IS-A relationship.
+
+Course does not inherit from Person because a Course is not a Person.
+
+Course uses composition (HAS-A relationship).
+
+❗ Mistakes / Learning Moments
+
+Initially confused inheritance with constructor parameters.
+
+Realized inheritance is about logical relationship, not function arguments.
+
+Strengthened understanding of when to override vs when to inherit.
+
+⏱ Reflection
+
+Time Spent: 3–4 Hours
+Mental Stretch (1–5): 4
+Hardest Concept: MRO & distinguishing IS-A vs HAS-A
+Key Insight: Inheritance is a design decision, not just syntax.
+
+📘 Day 7 – Dunder Methods & Object Behavior Customization
+🎯 Objective
+
+Learn how Python allows customization of object behavior using special (dunder) methods.
+
+🔑 Key Concepts
+
+__str__
+
+__repr__
+
+__eq__
+
+@property
+
+Name Mangling (__variable)
+
+Encapsulation in Python
+
+🧠 What I Implemented
+1️⃣ __str__ vs __repr__
+
+__str__ → user-friendly representation
+
+__repr__ → developer/debug representation
+
+Understood that:
+
+print(obj)      # calls __str__
+repr(obj)       # calls __repr__
+2️⃣ __eq__
+
+Implemented equality comparison:
+
+def __eq__(self, other):
+    return self.name == other.name and self.age == other.age
+
+Learned that:
+
+Objects are not equal by default unless explicitly defined.
+
+__eq__ overrides default identity comparison.
+
+3️⃣ Encapsulation & Name Mangling
+
+Used:
+
+self.__age
+
+Observed:
+
+Python changes it internally to _ClassName__age
+
+This prevents accidental modification.
+
+It is not true private, but convention-based protection.
+
+4️⃣ @property
+
+Implemented getter methods using:
+
+@property
+def age(self):
+    return self.__age
+
+Learned:
+
+Allows controlled attribute access.
+
+Makes methods behave like attributes.
+
+Supports future validation logic.
+
+📌 Important Observations
+
+Dunder methods change how objects behave.
+
+Python supports encapsulation, but relies on discipline.
+
+@property is powerful for controlled access.
+
+Name mangling prevents accidental override in subclasses.
+
+❗ Mistakes / Learning Moments
+
+Confused __str__ and __repr__ initially.
+
+Needed clarity on when __eq__ is triggered.
+
+Understood that encapsulation in Python is by convention, not strict enforcement.
+
+⏱ Reflection
+
+Time Spent: 3–4 Hours
+Mental Stretch (1–5): 5
+Hardest Concept: Name Mangling & __repr__
+Key Insight: Object behavior in Python is highly customizable through dunder methods.
